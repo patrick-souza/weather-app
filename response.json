@@ -1,0 +1,30 @@
+{
+  "coord": { "lon": -47.46, "lat": -23.5 },
+  "weather": [
+    { "id": 800, "main": "Clear", "description": "clear sky", "icon": "01d" }
+  ],
+  "base": "stations",
+  "main": {
+    "temp": 32.39,
+    "pressure": 1016,
+    "humidity": 16,
+    "temp_min": 31,
+    "temp_max": 33.89
+  },
+  "visibility": 10000,
+  "wind": { "speed": 6.2, "deg": 120, "gust": 11.3 },
+  "clouds": { "all": 0 },
+  "dt": 1570119972,
+  "sys": {
+    "type": 1,
+    "id": 8393,
+    "message": 0.007,
+    "country": "BR",
+    "sunrise": 1570092506,
+    "sunset": 1570136957
+  },
+  "timezone": -10800,
+  "id": 3447399,
+  "name": "Sorocaba",
+  "cod": 200
+}

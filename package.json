@@ -32,5 +32,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/axios": "^0.14.0",
+    "axios": "^0.19.0"
   }
 }
