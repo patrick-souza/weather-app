@@ -8,7 +8,8 @@ const INSTANCE = axios.create({
 INSTANCE.interceptors.request.use((req: AxiosRequestConfig) => {
   let { url } = req;
 
-  if (url) req.url = url.concat(`&APPID=${config.API_KEY}`);
+  if (url)
+    req.url = url.concat(`&lang=${config.LANGUAGE}&APPID=${config.API_KEY}`);
 
   return req;
 });

@@ -1,21 +1,47 @@
 import React, { useEffect } from "react";
-import API from "../../services/api.service";
 import { CurrentWeather } from "./components";
+import { useSelector, useDispatch } from "react-redux";
+import { IApplicationState } from "../../redux-tools/ducks";
+import {
+  fetchWeather,
+  fetchWeatherError
+} from "../../redux-tools/ducks/weather";
 
 export function Dashboard() {
-  useEffect(() => {
-    const fetch = async () =>
-      API.get("weather?q=sorocaba&units=metric&lang=pt_br").then(console.log);
+  const { currentWeather, isLoading } = useSelector(
+    (state: IApplicationState) => state.weather
+  );
+  const dispatch = useDispatch();
 
-    fetch();
-  }, []);
+  const { weather = [], name: city } = currentWeather;
+  const [weatherAtCurrentLocation] = weather;
+
+  useEffect(() => {
+    const getCurrentLocation = async () => {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          position => {
+            const { latitude, longitude } = position.coords;
+            dispatch(fetchWeather(latitude, longitude));
+          },
+          err => fetchWeatherError(err.message),
+          { enableHighAccuracy: true }
+        );
+      }
+    };
+    getCurrentLocation();
+  }, [dispatch]);
+
   return (
     <div>
-      <CurrentWeather
-        city={currentWeather.city}
-        description={currentWeather.description}
-        icon={CurrentWeather.icon}
-      />
+      {isLoading && <div>is Loading...</div>}
+      {city && weatherAtCurrentLocation && (
+        <CurrentWeather
+          city={city}
+          description={weatherAtCurrentLocation.description}
+          icon={weatherAtCurrentLocation.icon}
+        />
+      )}
     </div>
   );
 }
