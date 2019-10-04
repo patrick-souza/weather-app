@@ -1,7 +1,10 @@
-body {
+* {
   margin: 0;
   padding: 0;
+}
+body {
   box-sizing: border-box;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Open Sans", sans-serif;
   -webkit-font-smoothing: antialiased;
+  background: linear-gradient(to top, #ffffff, #6dd5fa, #2980b9) fixed;
 }

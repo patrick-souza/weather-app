@@ -13,9 +13,7 @@ const fetchWeatherSuccess = (
 ): IReducerAction<ICurrenWeather> =>
   action(WeatherActionTypes.FETCH_WEATHER_SUCCESS, data);
 
-const fetchWeatherError = (message: string): IReducerAction<string> => {
-  console.log(message);
-  return action(WeatherActionTypes.FETCH_WEATHER_ERROR, message);
-};
+const fetchWeatherError = (message: string): IReducerAction<string> =>
+  action(WeatherActionTypes.FETCH_WEATHER_ERROR, message);
 
 export { fetchWeather, fetchWeatherSuccess, fetchWeatherError };

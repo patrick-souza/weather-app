@@ -1,11 +1,12 @@
 import React, { useEffect } from "react";
-import { CurrentWeather } from "./components";
+import { CurrentWeather, Forecast } from "./components";
 import { useSelector, useDispatch } from "react-redux";
 import { IApplicationState } from "../../redux-tools/ducks";
 import {
   fetchWeather,
   fetchWeatherError
 } from "../../redux-tools/ducks/weather";
+import Loading from "../../components/loading";
 
 export function Dashboard() {
   const { currentWeather, isLoading } = useSelector(
@@ -13,7 +14,7 @@ export function Dashboard() {
   );
   const dispatch = useDispatch();
 
-  const { weather = [], name: city } = currentWeather;
+  const { weather = [], name: city, main } = currentWeather;
   const [weatherAtCurrentLocation] = weather;
 
   useEffect(() => {
@@ -34,13 +35,16 @@ export function Dashboard() {
 
   return (
     <div>
-      {isLoading && <div>is Loading...</div>}
+      {isLoading && <Loading />}
       {city && weatherAtCurrentLocation && (
-        <CurrentWeather
-          city={city}
-          description={weatherAtCurrentLocation.description}
-          icon={weatherAtCurrentLocation.icon}
-        />
+        <>
+          <CurrentWeather
+            city={city}
+            description={weatherAtCurrentLocation.description}
+            temperature={main.temp}
+          />
+          <Forecast min={main.temp_min} max={main.temp_max} />
+        </>
       )}
     </div>
   );

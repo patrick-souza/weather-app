@@ -1,17 +1,18 @@
 import React from "react";
-import { Container, City, Description, Icon } from "./styles";
+import { Container, City, Description, Temperature } from "./styles";
+import { roundTemperature } from "../../../../utils/round";
 
 type IProps = {
   city: string;
   description: string;
-  icon: string;
+  temperature: number;
 };
 export function CurrentWeather(props: IProps): JSX.Element {
   return (
     <Container>
       <City>{props.city}</City>
       <Description>{props.description}</Description>
-      <Icon />
+      <Temperature>{roundTemperature(props.temperature)}°</Temperature>
     </Container>
   );
 }
